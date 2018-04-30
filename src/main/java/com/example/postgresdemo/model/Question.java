@@ -8,7 +8,12 @@ import javax.validation.constraints.Size;
 @Table(name = "questions")
 public class Question extends AuditModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "question_generator")
+    @SequenceGenerator(
+            name = "question_generator",
+            sequenceName = "question_sequence",
+            initialValue = 1000
+    )
     private Long id;
 
     @NotBlank

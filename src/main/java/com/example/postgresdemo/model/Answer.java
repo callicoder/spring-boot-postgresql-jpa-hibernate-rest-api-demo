@@ -7,7 +7,12 @@ import javax.persistence.*;
 @Table(name = "answers")
 public class Answer extends AuditModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "answer_generator")
+    @SequenceGenerator(
+            name = "answer_generator",
+            sequenceName = "answer_sequence",
+            initialValue = 1000
+    )
     private Long id;
 
     @Column(columnDefinition = "text")
