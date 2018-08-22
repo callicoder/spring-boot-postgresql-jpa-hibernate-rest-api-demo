@@ -7,25 +7,25 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "answers")
-public class Answer extends AuditModel {
+@Table(name = "todo")
+public class Todo extends AuditModel {
     @Id
-    @GeneratedValue(generator = "answer_generator")
+    @GeneratedValue(generator = "todo_generator")
     @SequenceGenerator(
-            name = "answer_generator",
-            sequenceName = "answer_sequence",
+            name = "todo_generator",
+            sequenceName = "todo_sequence",
             initialValue = 1000
     )
     private Long id;
 
     @Column(columnDefinition = "text")
-    private String text;
+    private String todo;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "question_id", nullable = false)
+    @JoinColumn(name = "member_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Question question;
+    private Member member;
 
     public Long getId() {
         return id;
@@ -35,19 +35,19 @@ public class Answer extends AuditModel {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getTodo() {
+        return todo;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTodo(String todo) {
+        this.todo = todo;
     }
 
-    public Question getQuestion() {
-        return question;
+    public Member getMember() {
+        return member;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setMember(Member member) {
+        this.member = member;
     }
 }
