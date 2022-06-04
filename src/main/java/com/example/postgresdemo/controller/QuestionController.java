@@ -27,16 +27,16 @@ public class QuestionController {
         return questionRepository.save(question);
     }
 
-    @PutMapping("/questions/{questionId}")
-    public Question updateQuestion(@PathVariable Long questionId,
-                                   @Valid @RequestBody Question questionRequest) {
-        return questionRepository.findById(questionId)
-                .map(question -> {
-                    question.setTitle(questionRequest.getTitle());
-                    question.setDescription(questionRequest.getDescription());
-                    return questionRepository.save(question);
-                }).orElseThrow(() -> new ResourceNotFoundException("Question not found with id " + questionId));
-    }
+//    @PutMapping("/questions/{questionId}")
+//    public Question updateQuestion(@PathVariable Long questionId,
+//                                   @Valid @RequestBody Question questionRequest) {
+//        return questionRepository.findById(questionId)
+//                .map(question -> {
+//                    question.setTitle(questionRequest.getTitle());
+//                    question.setDescription(questionRequest.getDescription());
+//                    return questionRepository.save(question);
+//                }).orElseThrow(() -> new ResourceNotFoundException("Question not found with id " + questionId));
+//    }
 
 
     @DeleteMapping("/questions/{questionId}")

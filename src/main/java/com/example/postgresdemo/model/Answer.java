@@ -1,22 +1,26 @@
 package com.example.postgresdemo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "answers")
 public class Answer extends AuditModel {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(generator = "answer_generator")
     @SequenceGenerator(
             name = "answer_generator",
             sequenceName = "answer_sequence",
-            initialValue = 1000
+            initialValue = 1
     )
-    private Long id;
+    private int id;
 
     @Column(columnDefinition = "text")
     private String text;
@@ -27,27 +31,5 @@ public class Answer extends AuditModel {
     @JsonIgnore
     private Question question;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
 }
